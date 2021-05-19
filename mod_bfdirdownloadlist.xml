@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>mod_bfdirdownloadlist</name>
+	<version>1.0.0</version>
+	<author>Jonathan Brain</author>
+	<authorEmail>brainforge.uk@btinternet.com</authorEmail>
+	<authorUrl>https://www.brainforge.co.uk</authorUrl>
+	<creationDate>May 2021</creationDate>
+	<copyright>Copyright 2021 Jonathan Brain. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description>MOD_BFDIRDOWNLOADLIST_XML_DESCRIPTION</description>
+
+	<files>
+		<filename module="mod_bfdirdownloadlist">mod_bfdirdownloadlist.php</filename>
+		<folder>language</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+						name="dirname"
+						type="text"
+						label="MOD_BFDIRDOWNLOADLIST_DIRNAME_LABEL"
+						description="MOD_BFDIRDOWNLOADLIST_DIRNAME_DESC"
+						hint="notwebaccessible/myfiles"
+						required="true"
+				/>
+				<field
+						name="filelist"
+						type="subform"
+						layout="joomla.form.field.subform.repeatable-table"
+						groupByFieldset="true"
+						label="MOD_BFDIRDOWNLOADLIST_FILELIST_LABEL"
+						multiple="true"
+						min="1"
+				>
+					<form>
+						<fieldset name="column1">
+							<field
+									name="realfilename"
+									type="text"
+									label="MOD_BFDIRDOWNLOADLIST_REALFILENAME_LABEL"
+									required="true"
+							/>
+							<field
+									name="userfilename"
+									type="text"
+									label="MOD_BFDIRDOWNLOADLIST_USERFILENAME_LABEL"
+									required="true"
+							/>
+						</fieldset>
+
+						<fieldset name="column2">
+							<field
+									name="title"
+									type="text"
+									label="MOD_BFDIRDOWNLOADLIST_FILETITLE_LABEL"
+									required="true"
+							/>
+							<field
+									name="status"
+									type="radio"
+									layout="joomla.form.field.radio.switcher"
+									label="MOD_BFDIRDOWNLOADLIST_FILESTATUS_LABEL"
+									default="1"
+							>
+								<option value="0">JDISABLED</option>
+								<option value="1">JENABLED</option>
+							</field>
+						</fieldset>
+					</form>
+				</field>
+			</fieldset>
+
+			<fieldset name="advanced">
+				<field
+						name="translatable"
+						type="radio"
+						layout="joomla.form.field.radio.switcher"
+						label="MOD_BFDIRDOWNLOADLIST_TRANSLATABLE_LABEL"
+						default="0"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					class="form-select"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC"
+				/>
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+				/>
+
+				<field
+					name="cache"
+					type="list"
+					default="0"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+
+	<updateservers>
+		<server type="extension" priority="1" name="MOD_BFDIRDOWNLOADLIST">
+			https://brainforge.co.uk/component/bfupdater?element=mod_bfdirdownloadlist.xml
+		</server>
+	</updateservers>
+</extension>
