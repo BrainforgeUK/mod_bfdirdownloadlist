@@ -24,10 +24,12 @@ $lang->load('mod_bfdirdownloadlist', __DIR__);
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'));
 
 $dirname = $params->get('dirname');
-if ($dirname[0] != '/' || $dirname[1] != ':')
+if ($dirname[0] != '/' && $dirname[1] != ':')
 {
 	$dirname = dirname(JPATH_SITE) . '/' . $dirname;
 }
+
+$uri = Joomla\CMS\Uri\Uri::getInstance()->toString();
 
 $filelist = $params->get('filelist');
 $translatable = $params->get('translatable');
@@ -51,7 +53,6 @@ foreach($filelist as $id=>&$file)
 		$file->title = Text::_($file->title);
 	}
 
-	$uri = Joomla\CMS\Uri\Uri::current();
 	$file->href = $uri . (strpos($uri, '?') ? '&' : '?') .
 		'modbffiledl=' . $module->id . '-' . $file->id . '-' . $file->userfilename;
 
